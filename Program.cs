@@ -4,5 +4,6 @@ partial class Program {
     {
         Variables();
         DataTypes();
+        ShowStringTypes();
     }
 }
