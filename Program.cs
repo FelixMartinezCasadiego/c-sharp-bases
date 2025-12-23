@@ -4,6 +4,8 @@ partial class Program {
     {
         // Variables();
         // DataTypes();
-        ShowStringTypes();
+        // ShowStringTypes();
+        // SalesReport();
+        SalaryCalculator();
     }
 }
