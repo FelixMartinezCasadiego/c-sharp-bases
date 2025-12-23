@@ -12,3 +12,4 @@
 /Users/felixgabrielmartinezcasadiego/Desktop/personal/c#/bases/01/HelloApp/obj/Debug/net9.0/HelloApp.pdb
 /Users/felixgabrielmartinezcasadiego/Desktop/personal/c#/bases/01/HelloApp/obj/Debug/net9.0/HelloApp.genruntimeconfig.cache
 /Users/felixgabrielmartinezcasadiego/Desktop/personal/c#/bases/01/HelloApp/obj/Debug/net9.0/ref/HelloApp.dll
+/Users/felixgabrielmartinezcasadiego/Desktop/personal/c#/bases/01/HelloApp/obj/Debug/net9.0/HelloApp.sourcelink.json
