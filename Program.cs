@@ -11,6 +11,7 @@ partial class Program {
         // DatesOfLife();
         // DaysUntilNextBirthday();
         // TypeDifference();
-        HandleNullables();
+        // HandleNullables();
+        Arrays();
     }
 }
