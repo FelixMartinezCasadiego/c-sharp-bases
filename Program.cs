@@ -6,6 +6,7 @@ partial class Program {
         // DataTypes();
         // ShowStringTypes();
         // SalesReport();
-        SalaryCalculator();
+        // SalaryCalculator();
+        ShowTime();
     }
 }
