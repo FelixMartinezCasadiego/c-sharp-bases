@@ -9,6 +9,7 @@ partial class Program {
         // SalaryCalculator();
         // ShowTime();
         // DatesOfLife();
-        DaysUntilNextBirthday();
+        // DaysUntilNextBirthday();
+        TypeDifference();
     }
 }
