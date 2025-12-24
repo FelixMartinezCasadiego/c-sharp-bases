@@ -10,6 +10,7 @@ partial class Program {
         // ShowTime();
         // DatesOfLife();
         // DaysUntilNextBirthday();
-        TypeDifference();
+        // TypeDifference();
+        HandleNullables();
     }
 }
