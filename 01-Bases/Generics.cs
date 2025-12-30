@@ -4,10 +4,10 @@ partial class Program
     {
         string[] names = ["Juan","Luis", "Diana"];
         int[] numbers = [1, 2, 3, 4, 5];
-        Console.WriteLine($" Without Generics {GetStringArrayLength(names)}");
-        Console.WriteLine($" Without Generics {GetIntArrayLength(numbers)}");
-        Console.WriteLine($" With Generics {GetArrayLength(names)}");
-        Console.WriteLine($" With Generics {GetArrayLength(numbers)}");
+        WriteLine($" Without Generics {GetStringArrayLength(names)}");
+        WriteLine($" Without Generics {GetIntArrayLength(numbers)}");
+        WriteLine($" With Generics {GetArrayLength(names)}");
+        WriteLine($" With Generics {GetArrayLength(numbers)}");
 
         Box<int> intBox = new()
         {
@@ -46,6 +46,6 @@ class Box<T>
 
     public void Show()
     {
-        Console.WriteLine(Content);
+        WriteLine(Content);
     }
 }
