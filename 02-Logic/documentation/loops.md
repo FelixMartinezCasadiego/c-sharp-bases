@@ -75,3 +75,63 @@ foreach (var name in names) {
 ## Resumen
 
 Este archivo es útil para aprender cómo repetir acciones en C# usando los bucles while y do-while, que permiten controlar el flujo de ejecución según condiciones específicas.
+
+## Control de flujo en bucles
+
+En C#, se pueden usar las sentencias `break`, `continue` y `return` para controlar el flujo dentro de los bucles. También es posible crear bucles infinitos.
+
+### break
+
+Sale completamente del bucle actual.
+
+```csharp
+for(int i = 0; i < 10; i++)
+{
+    if(i == 5)
+    {
+        break; // Sale del bucle cuando i es 5
+    }
+    // WriteLine(i);
+}
+```
+
+### continue
+
+Salta la iteración actual y continúa con la siguiente.
+
+```csharp
+for(int i = 0; i < 10; i++)
+{
+    if(i % 2 == 0)
+    {
+        continue; // Salta los números pares
+    }
+    WriteLine(i);
+}
+```
+
+### return
+
+Sale completamente del método, no solo del bucle.
+
+```csharp
+for(int i = 0; i < 10; i++)
+{
+    if(i == 3)
+    {
+        return; // Sale del método cuando i es 3
+    }
+    // WriteLine(i);
+}
+```
+
+### Bucle infinito
+
+Un bucle que nunca termina a menos que se use break, return o se detenga el programa manualmente.
+
+```csharp
+while(true)
+{
+    WriteLine("Esto se imprimirá para siempre a menos que detengas el programa.");
+}
+```
