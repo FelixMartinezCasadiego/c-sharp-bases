@@ -1,0 +1,58 @@
+# Métodos en C#
+
+## ¿Qué es un método?
+
+Un **método** en C# es un bloque de código que realiza una tarea específica, puede recibir parámetros y devolver un valor. Los métodos ayudan a organizar el código, reutilizar lógica y mejorar la legibilidad de los programas.
+
+**Ejemplo básico:**
+
+```csharp
+public void Saludar()
+{
+    Console.WriteLine("¡Hola!");
+}
+```
+
+## Métodos Estáticos
+
+Un **método estático** pertenece a la clase y no a una instancia específica. Se invoca usando el nombre de la clase, no de un objeto. Son útiles para operaciones que no dependen de los datos de una instancia.
+
+**Ejemplo:**
+
+```csharp
+public static void MostrarInfoGeneral()
+{
+    Console.WriteLine("Los autos son vehículos que circulan por carreteras.");
+}
+
+// Uso:
+Car.MostrarInfoGeneral();
+```
+
+## Métodos Sobrecargados (Overloads)
+
+La **sobrecarga de métodos** permite definir varios métodos con el mismo nombre pero diferentes parámetros (tipo, número o ambos). Esto facilita el uso de un mismo método para diferentes situaciones.
+
+**Ejemplo:**
+
+```csharp
+public void MostrarMensaje()
+{
+    Console.WriteLine("Este es un auto.");
+}
+
+public void MostrarMensaje(string mensaje)
+{
+    Console.WriteLine(mensaje);
+}
+```
+
+En el archivo `Methods.cs` se ejemplifican estos conceptos con la clase `Car`, que tiene métodos normales, estáticos y sobrecargados.
+
+---
+
+**Resumen:**
+
+- Un método es una función dentro de una clase.
+- Los métodos estáticos se llaman desde la clase, no desde un objeto.
+- Los métodos sobrecargados permiten múltiples versiones de un método con diferentes parámetros.
