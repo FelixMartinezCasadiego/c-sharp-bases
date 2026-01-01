@@ -49,7 +49,31 @@ public void MostrarMensaje(string mensaje)
 
 En el archivo `Methods.cs` se ejemplifican estos conceptos con la clase `Car`, que tiene métodos normales, estáticos y sobrecargados.
 
----
+## Destructores (~)
+
+Un **destructor** en C# es un método especial que se define usando el símbolo `~` seguido del nombre de la clase. Se ejecuta automáticamente cuando el recolector de basura elimina un objeto de la memoria. Su propósito principal es liberar recursos no administrados (como archivos, conexiones, etc.) antes de que el objeto sea destruido.
+
+**Ejemplo:**
+
+```csharp
+~Car()
+{
+    Console.WriteLine("Car object is being destroyed.");
+}
+```
+
+### Pros
+
+- Permite liberar recursos no administrados automáticamente.
+- Útil para registrar o limpiar acciones al destruir un objeto.
+
+### Contras
+
+- No se puede controlar exactamente cuándo se ejecuta el destructor (depende del recolector de basura).
+- Puede afectar el rendimiento si se abusa de ellos.
+- No se recomienda para liberar recursos administrados (usar `IDisposable` y `Dispose()` en su lugar).
+
+**Nota:** En la mayoría de los casos modernos, es preferible implementar la interfaz `IDisposable` para liberar recursos de manera más predecible.
 
 **Resumen:**
 

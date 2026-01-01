@@ -7,6 +7,9 @@ partial class Program
         car.ShowMessage("This is a custom message.");
         WriteLine(car.ShowInfo());
         Car.GeneralInfo();   
+
+        Car anotherCar = new(model: "Honda", year: 2018);
+        anotherCar.ChangeModel("Honda Civic");
     }
 }
 
@@ -21,6 +24,12 @@ class Car(string model, int year)
     public string ShowInfo()
     {
         return $"Model: {Model}, Year: {Year}";
+    }
+
+    // Destroyer (~)
+    ~Car()
+    {
+        WriteLine("Car object is being destroyed.");
     }
 
     // Overloaded methods
