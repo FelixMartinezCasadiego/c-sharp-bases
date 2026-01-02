@@ -48,12 +48,62 @@ namespace AdvancedLinq
         new Statistic { CharacterId = 4, Power = 80 },
         new Statistic { CharacterId = 5, Power = 95 }
       ];
-      // WriteLine($"👥 Equipo: {team}");
-      // WriteLine("🦸‍♂️ Personajes y sus habilidades:");
 
-      // WriteLine($"⚡ Poder total de todos los personajes: {totalPower}");
-      // WriteLine($"🛡️ Promedio de poder de los Avengers: {avengersPower:F2}");
-      // WriteLine("📝 Cantidad de habilidades por personaje:");
+        var teamQuery = from c in characters
+                        group c by c.Team into team
+                        select team;
+
+        var teamsMethod = characters.GroupBy(c => c.Team);
+
+        foreach (var team in teamsMethod)
+        {
+            // WriteLine($"👥 Equipo: {team.Key}");
+            foreach (var character in team)
+            {
+                // WriteLine($" - {character.Alias} ({character.Name})");
+            }
+        }
+
+        // merge collections with Join
+        var characterAbilitiesQuery = from c in characters
+                                      join a in abilities on c.Id equals a.CharacterId
+                                      select new { c.Alias, a.Description };
+
+        var characterAbilitiesMethod = characters.Join(abilities,
+                                                        c => c.Id,
+                                                        a => a.CharacterId,
+                                                        (c, a) => new { c.Alias, a.Description });
+
+        foreach (var character in characterAbilitiesMethod)
+        {
+                                                                
+            // WriteLine("🦸‍♂️ Personajes y sus habilidades:");
+            // WriteLine($" - {character.Alias}: {character.Description}");
+        }
+
+        // Aggregate functions
+        var totalPower = statistics.Sum(s => s.Power); // Using Lambda expression
+        WriteLine($"⚡ Poder total de todos los personajes: {totalPower}");
+
+        var avengersPower = (from c in characters
+                            join s in statistics on c.Id equals s.CharacterId
+                            where c.Team == "Avengers"
+                            select s.Power).Average();
+      WriteLine($"🛡️ Promedio de poder de los Avengers: {avengersPower:F2}");
+
+    var abilitiesByCharacter = from c in characters
+                               join a in abilities on c.Id equals a.CharacterId
+                               group a by c.Alias into groupAbilities
+                               select new
+                               {
+                                   Character= groupAbilities.Key,
+                                   Count = groupAbilities.Count()
+                               };      
+      WriteLine("📝 Cantidad de habilidades por personaje:");
+      foreach (var character in abilitiesByCharacter)
+      {
+          WriteLine($" - {character.Character}: {character.Count} habilidades");
+      }
     }
   }
 }
