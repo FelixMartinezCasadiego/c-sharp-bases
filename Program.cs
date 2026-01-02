@@ -2,6 +2,7 @@
 partial class Program {
     static void Main(string[] args)
     {
-        AdvancedLinq.Program.AdvancedLINQ();
+        // AdvancedLinq.Program.AdvancedLINQ();
+        SalesAnalysis();
     }
 }
