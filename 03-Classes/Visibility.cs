@@ -24,7 +24,14 @@ partial class Program
     }
 }
 
-class Jedi
+interface IForceUser // Define an interface for Force users
+{
+    int PowerLevel { get; set; }
+    string? LightsaberColor { get; set; }
+    void UseForce();
+}
+
+class Jedi : IForceUser
 {
     public string PublicField = "I'm a Jedi and my power is public."; // Accessible from anywhere
     private readonly string PrivateField = "My thoughts are private."; // Accessible only within this class
@@ -55,8 +62,12 @@ class Jedi
     }
 }
 
-class Sith : Jedi
+class Sith : Jedi, IForceUser
 {
+    public new void UseForce() // 'new' keyword to hide the inherited method
+    {
+        WriteLine($"I'm a sith using a lightsaber of color {LightsaberColor} with power level {PowerLevel}.");
+    }
     public void ShowProtected()
     {
         WriteLine(ProtectedField); // Accessible because Sith inherits from Jedi
