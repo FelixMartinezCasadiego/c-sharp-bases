@@ -11,8 +11,14 @@ partial class Program
             amount = ReadLine();
             if( string.IsNullOrEmpty(amount) ) return;
 
-            double amountValue = double.Parse(amount);
-            WriteLine($"The amount entered is {amountValue:C}");
+            // double amountValue = double.Parse(amount);
+            if (double.TryParse(amount, out double amountValue)) // Safer parsing
+            {    
+                WriteLine($"The amount entered is {amountValue:C}");
+            } else
+            {
+                throw new FormatException("Input string was not in a correct format."); // Manually throw exception for demonstration
+            }
         }
         catch (DivideByZeroException) // when (number == 0)
         {
@@ -28,6 +34,10 @@ partial class Program
         {
             ForegroundColor = ConsoleColor.Red;
             WriteLine($"An error occurred: {ex.Message}");
+        } finally
+        {
+            ForegroundColor = ConsoleColor.White;
+            WriteLine("Execution completed. Thank you!");
         }
     }
 }

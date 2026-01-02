@@ -21,13 +21,25 @@ Se utiliza el bloque `try-catch`:
 En este archivo se muestra cómo manejar diferentes tipos de excepciones al intentar convertir una entrada de usuario a número:
 
 - Se solicita al usuario un número para dividir 10.
-- Se intenta convertir la entrada a un valor numérico (`double.Parse`).
+- Se utiliza `double.TryParse` para intentar convertir la entrada a un valor numérico de forma segura. Si la conversión es exitosa, se muestra el valor ingresado. Si falla, se lanza manualmente una excepción `FormatException` para demostrar el manejo de errores personalizados.
 - Se manejan varias excepciones específicas:
   - **DivideByZeroException:** Ocurre si se intenta dividir por cero (comentado en el ejemplo).
-  - **FormatException:** Ocurre si la entrada no es un número válido. Además, se usa una condición para mostrar un mensaje especial si el usuario incluye el símbolo `$`.
+  - **FormatException:** Ocurre si la entrada no es un número válido o si contiene el símbolo `$`, mostrando un mensaje especial en ese caso.
   - **Exception:** Captura cualquier otra excepción no prevista, mostrando el mensaje de error.
 
-### Ejemplo de código relevante:
+### Fragmento de código relevante:
+
+```csharp
+if (double.TryParse(amount, out double amountValue)) // Conversión segura
+{
+        WriteLine($"The amount entered is {amountValue:C}");
+} else
+{
+        throw new FormatException("Input string was not in a correct format."); // Lanzar excepción manualmente
+}
+```
+
+### Ejemplo de estructura de manejo de excepciones:
 
 ```csharp
 try
