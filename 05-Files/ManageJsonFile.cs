@@ -1,0 +1,36 @@
+using System.Text.Json;
+
+namespace ManageJsonFile
+{
+  class Character
+  {
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Alias { get; set; }
+    public string? Team { get; set; }
+  }
+  partial class Program
+  {
+    public static void ManageJsonFile()
+    {
+      List<Character> characters =
+      [
+        new Character { Id = 1, Name = "Peter Parker", Alias = "Spider", Team = "Avengers" },
+        new Character { Id = 2, Name = "Tony Stark", Alias
+        = "Iron Man", Team = "Avengers" },
+        new Character { Id = 3, Name = "Steve Rogers", Alias = "Capitán América", Team = "Avengers" }
+      ];
+
+    //   var charactersJson = JsonSerializer.Serialize(characters); // Convertir a JSON
+      var charactersJson = JsonSerializer.Serialize(characters, new JsonSerializerOptions { WriteIndented = true, Encoder= System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping }); // Convertir a JSON con formato legible y sin escapar caracteres Unicode
+      File.WriteAllText("./05-Files/characters.json", charactersJson); // Guardar en archivo
+      
+      var characterFromFile = File.ReadAllText("./05-Files/characters.json"); // Leer desde archivo
+      var charactersFromJson = JsonSerializer.Deserialize<List<Character>>(characterFromFile); // Convertir desde JSON a objetos C#
+      foreach (var character in charactersFromJson!)
+      {
+        Console.WriteLine($"Id: {character.Id}, Name: {character.Name}, Alias: {character.Alias}, Team: {character.Team}");
+      }
+    }
+  }
+}
