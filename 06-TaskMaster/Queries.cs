@@ -1,11 +1,11 @@
-using BetterConsoles.Tables;
-using BetterConsoles.Tables.Configuration;
+using BetterConsoles.Tables; // Requiere instalar el paquete BetterConsoles.Tables
+using BetterConsoles.Tables.Configuration; // Requiere instalar el paquete BetterConsoles.Tables
 
 namespace TaskMaster
 {
   public class Queries(List<Task> _tasks)
   {
-    private List<Task> Tasks = _tasks;
+    private readonly List<Task> Tasks = _tasks;
     
     public void ListTasks()
         {
@@ -22,12 +22,37 @@ namespace TaskMaster
             Table  table = new("Id", "Descripción", "Completado");
             foreach (var task in Tasks)
             {
-            table.AddRow(task.Id, task.Description, task.Completed?"Completada":"Pendiente");
+            table.AddRow(task.Id, task.Description, task.Completed ? "Completada" : "Pendiente");
             }
             table.Config = TableConfig.Unicode();
 
             Write(table.ToString());
             ReadKey();
+        }
+
+        public List<Task> AddTask()
+        {
+            try
+            {
+                ResetColor();
+                Clear();
+                WriteLine("------Agregar Nueva Tarea------");
+                Write("Ingrese la descripción de la tarea: ");
+                var description = ReadLine()!;
+                Task newTask = new(Utils.GenerateId(), description);
+                Tasks.Add(newTask);
+                ForegroundColor = ConsoleColor.Green;
+                WriteLine("Tarea agregada exitosamente.");
+                ResetColor();
+                return Tasks;
+            }
+            catch (Exception ex)
+            {
+                
+                ForegroundColor = ConsoleColor.Red;
+                WriteLine($"Error al agregar la tarea: {ex.Message}");
+                return Tasks;
+            }
         }
 
     }
