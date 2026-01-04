@@ -201,6 +201,43 @@ namespace TaskMaster
                 ResetColor();
             }
         }
+          
+        public void TasksByDescription()
+        {
+            try
+            {
+                ResetColor();
+                WriteLine("------Consultar tareas por descripción------");
+                Write("Ingrese la descripcion de las tareas a buscar: ");
+                string description = ReadLine()!;
+                               
+                List<Task> matchingTasks = Tasks.FindAll(t => t.Description?.Contains(description, StringComparison.OrdinalIgnoreCase) ?? false).ToList();
+
+                if (matchingTasks.Count == 0)
+                {
+                    ForegroundColor = ConsoleColor.Yellow;
+                    WriteLine("No se encontraron tareas con la descripción ingresada.");
+                    ResetColor();
+                    return;
+                }
+
+            Table table = new("Id", "Descripción", "Completado");
+            foreach (var task in matchingTasks)
+            {
+            table.AddRow(task.Id, task.Description, task.Completed ? "Completada" : "Pendiente");
+            }
+            table.Config = TableConfig.Unicode();
+
+            Write(table.ToString());
+            ReadKey();
+            }
+            catch (Exception ex)
+            {
+                ForegroundColor = ConsoleColor.Red;
+                WriteLine($"Ocurrió un error al ver tarea por descripcion: {ex.Message}");
+                ResetColor();
+            }
+        }
 
     }
 }

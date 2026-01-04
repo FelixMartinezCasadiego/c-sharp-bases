@@ -44,15 +44,15 @@ namespace TaskMaster
             TasksByState();
             break;
             case "7":
-            //TasksByDescription();
+            queries.TasksByDescription();
             break;
             case "8":
             salir = true;
-            Console.Clear();
+            Clear();
             break;
             default:
-            Console.Clear();
-            Console.WriteLine("Opción no válida. Intente nuevamente.");
+            Clear();
+            WriteLine("Opción no válida. Intente nuevamente.");
             break;
         }
         }
