@@ -123,5 +123,37 @@ namespace TaskMaster
             }
         }
 
+        public List<Task> RemoveTask()
+        {
+            try
+            {
+                ResetColor();
+                Clear();
+                WriteLine("------Eliminar tarea------");
+                Write("Ingrese el id de la tarea a eliminar: ");
+                var id = ReadLine()!;
+                
+                Task task = Tasks.Find(t => t.Id == id)!;
+                if (task == null)
+                {
+                    ForegroundColor = ConsoleColor.Red;
+                    WriteLine($"Error al eliminar la tarea: La tarea con id {id} no existe.");ResetColor();
+                    return Tasks;
+                }
+
+                Tasks.Remove(task);
+                ForegroundColor = ConsoleColor.Green;
+                WriteLine("Tarea eliminada exitosamente.");
+                ResetColor();
+                return Tasks;
+            }
+            catch (Exception ex)
+            {
+                ForegroundColor = ConsoleColor.Red;
+                WriteLine($"Error al eliminar la tarea: {ex.Message}");
+                return Tasks;
+            }
+        }
+
     }
 }

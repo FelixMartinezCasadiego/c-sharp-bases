@@ -22,13 +22,5 @@
     "CreatedAt": "2025-03-11T20:20:53.051415+01:00",
     "ModifiedAt": "2025-03-12T18:16:17.74727+01:00",
     "Deleted": false
-  },
-  {
-    "Id": "d1bf3a6",
-    "Description": "Tarea de pintar!",
-    "Completed": false,
-    "CreatedAt": "2026-01-04T18:37:46.422995+01:00",
-    "ModifiedAt": "2026-01-04T18:54:46.603907+01:00",
-    "Deleted": false
   }
 ]

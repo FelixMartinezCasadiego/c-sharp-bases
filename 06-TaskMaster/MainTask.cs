@@ -38,7 +38,7 @@ namespace TaskMaster
             EditTask();
             break;
             case "5":
-            // RemoveTask();
+            RemoveTask();
             break;
             case "6":
             //TasksByState();
@@ -91,6 +91,21 @@ namespace TaskMaster
             try
             {
                 var tasks = queries.EditTask();
+                fileActions.WriteFile(tasks);
+            }
+            catch (Exception ex)
+            {
+                ForegroundColor = ConsoleColor.Red;
+                WriteLine($"Error al marcar la tarea como completada: {ex.Message}");
+                ResetColor();
+            }
+        }
+
+        public static void RemoveTask()
+        {
+            try
+            {
+                var tasks = queries.RemoveTask();
                 fileActions.WriteFile(tasks);
             }
             catch (Exception ex)
