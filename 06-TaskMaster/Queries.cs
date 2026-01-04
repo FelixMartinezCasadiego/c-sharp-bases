@@ -155,5 +155,52 @@ namespace TaskMaster
             }
         }
 
+          public void TasksByState()
+        {
+            try
+            {
+                ResetColor();
+                WriteLine("------Consultar tareas por estado------");
+                WriteLine("1. Completadas");
+                WriteLine("2. Pendientes");
+                Write("Seleccione una opción: ");
+                string taskState = ReadLine()!;
+                if(taskState != "1" && taskState != "2")
+                {
+                    ForegroundColor = ConsoleColor.Red;
+                    WriteLine("Opción no válida. Intente nuevamente.");
+                    ResetColor();
+                    return;
+                }
+
+                bool completed = taskState == "1";
+                List<Task> filteredTasks = Tasks.Where(t => t.Completed == completed).ToList();
+
+                if (filteredTasks.Count == 0)
+                {
+                    ForegroundColor = ConsoleColor.Yellow;
+                    WriteLine("No se encontraron tareas con el estado seleccionado.");
+                    ResetColor();
+                    return;
+                }
+
+            Table table = new("Id", "Descripción", "Completado");
+            foreach (var task in filteredTasks)
+            {
+            table.AddRow(task.Id, task.Description, task.Completed ? "Completada" : "Pendiente");
+            }
+            table.Config = TableConfig.Unicode();
+
+            Write(table.ToString());
+            ReadKey();
+            }
+            catch (Exception ex)
+            {
+                ForegroundColor = ConsoleColor.Red;
+                WriteLine($"Ocurrió un error al filtrar las tareas: {ex.Message}");
+                ResetColor();
+            }
+        }
+
     }
 }

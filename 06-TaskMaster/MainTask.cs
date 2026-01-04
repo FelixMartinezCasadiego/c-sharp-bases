@@ -41,7 +41,7 @@ namespace TaskMaster
             RemoveTask();
             break;
             case "6":
-            //TasksByState();
+            TasksByState();
             break;
             case "7":
             //TasksByDescription();
@@ -112,6 +112,20 @@ namespace TaskMaster
             {
                 ForegroundColor = ConsoleColor.Red;
                 WriteLine($"Error al marcar la tarea como completada: {ex.Message}");
+                ResetColor();
+            }
+        }
+
+        public static void TasksByState()
+        {
+            try
+            {
+                queries.TasksByState();
+            }
+            catch (Exception ex)
+            {
+                ForegroundColor = ConsoleColor.Red;
+                WriteLine($"Ocurrió un error al filtrar las tareas: {ex.Message}");
                 ResetColor();
             }
         }
